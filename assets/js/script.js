@@ -75,6 +75,10 @@ function cart_operation(event) {
 }
 
 function productPriceInvoice() {
+    let subtotal = 0;
+    let tax = 0;
+    let discount = 0;
+    let total = 0;
     if (cartCounter === 0) {
         document.getElementById('price_invoice').style.display = 'none';
     }
@@ -82,6 +86,34 @@ function productPriceInvoice() {
         document.getElementById('price_invoice').style.display = 'block';
     }
 
+    for (i of cartArr) {
+
+        subtotal += ((i.phonePrice) * (i.productCount));
+    }
+
+    if (subtotal < 700) {
+        tax = percentageConter(0, subtotal);
+        discount = percentageConter(5, subtotal);
+    }
+    else if (subtotal < 1500) {
+        tax = percentageConter(2, (subtotal - 700))
+        discount = percentageConter(7, subtotal);
+
+    }
+
+    else if (subtotal < 2700) {
+        tax = percentageConter(2, 800) + percentageConter(5, (subtotal - 1500));
+        discount = percentageConter(10, subtotal);
+    }
+
+    else {
+        tax = percentageConter(2, 800) + percentageConter(5, 2700) + percentageConter(8, (subtotal - 2700));
+        discount = percentageConter(15, subtotal);
+    }
+
+    total = subtotal + tax - discount;
+
+    document.getElementById('price_invoice').innerHTML = `<div class="p-5"> <h3 class="mb-5">Invoice</h3> <div class="d-flex justify-content-between mx-5"> <div>Subtotal:</div> <div>$<span>${subtotal}</span></div> </div> <div class="d-flex justify-content-between mx-5"> <div>Discount:</div> <div>$<span>${discount}</span></div> </div> <div class="d-flex justify-content-between mx-5"> <div>Tax:</div> <div>$<span>${tax}</span></div> </div> <div class="d-flex justify-content-between mx-5"> <div>Total:</div> <div>$<span>${total}</span></div> </div> <div style="text-align: end;" class="mx-5 mt-3"><button type="button" class="btn btn-primary btn-lg" id="checkout">Checkout</button> </div></div> `
 
 }
 
@@ -89,5 +121,7 @@ function checkObjectInArray(phoneName) {
     return cartArr.findIndex(index => index.phoneSelected === phoneName);
 
 }
-
+function percentageConter(percentage, subtotal) {
+    return (percentage * subtotal) / 100
+}
 

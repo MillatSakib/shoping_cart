@@ -102,5 +102,5 @@ body {
 }
 
 #price_invoice {
-  display: none;
+  display: block;
 }
