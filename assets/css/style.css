@@ -28,9 +28,11 @@
   background-color: rgb(245, 245, 245);
 }
 
-#cart_details {
+#cart_details,
+#price_invoice {
   /* display: none; */
   background-color: white;
+  font-weight: bold;
   width: 90%;
   max-width: 1366px;
   margin-top: 100px;
@@ -97,4 +99,8 @@ body {
   background-color: rgb(245, 245, 245);
   width: 90%;
   margin: 30px auto;
+}
+
+#price_invoice {
+  display: none;
 }

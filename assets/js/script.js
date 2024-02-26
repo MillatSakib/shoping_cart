@@ -18,7 +18,7 @@ function showcart() {
     document.getElementById('cart_details').innerHTML = cards;
     cartCounter = cartArr.length;
     document.getElementById('total_cart').innerText = cartCounter;
-    // productPriceInvoice();
+    productPriceInvoice();
 }
 
 
@@ -72,6 +72,17 @@ function cart_operation(event) {
         document.getElementById('cart_details').style.display = 'none';
     }
     document.getElementById('total_cart').innerText = cartCounter;
+}
+
+function productPriceInvoice() {
+    if (cartCounter === 0) {
+        document.getElementById('price_invoice').style.display = 'none';
+    }
+    else {
+        document.getElementById('price_invoice').style.display = 'block';
+    }
+
+
 }
 
 function checkObjectInArray(phoneName) {
