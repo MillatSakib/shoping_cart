@@ -104,3 +104,7 @@ body {
 #price_invoice {
   display: block;
 }
+
+#img_reponsive {
+  max-width: 90%;
+}
